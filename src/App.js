@@ -7,7 +7,7 @@ import {useState} from "react";
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 
-
+import Menu from "@mui/material/Menu";
 
 
 import './App.css';
@@ -20,7 +20,7 @@ import turkey from "./image/turkey.png";
 import usa from "./image/usa.png";
 import pakistan from "./image/pakistan.png";
 
-
+import menu from "./image/hamburger.png"
 
 const area = [
   { 
@@ -100,6 +100,19 @@ const handleOnChange = (e) => {
 }
 
 
+
+
+
+const [anchorEl, setAnchorEl] = useState(null);
+  
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
   return (
     <div className="App">
       <div className = "mainContainer">
@@ -124,15 +137,30 @@ const handleOnChange = (e) => {
             <img src = {down} alt = "drop" />
             </div>
           </div>
+          <Menu
+        keepMounted
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        open={Boolean(anchorEl)}
+      >
+        <MenuItem onClick={handleClose}>About us</MenuItem>
+        <MenuItem onClick={handleClose}>Solution</MenuItem>
+        <MenuItem onClick={handleClose}>Global Network</MenuItem>
+        {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+      </Menu>
+          <div className = "drop">
+              <img onClick={handleClick} className = "dropMenu" src = {menu} alt = "drop" />
+          </div>
         </div>
         <div className = "contentContainer">
           <div className = "imageContainer">
+            <p className = "contact">Contact us</p>
             <br />
             <br />
-            <img src = {imageC} alt = "image" />
+            <img className = "im" src = {imageC} alt = "image" />
           </div>
           <div className = "formContainer">
-            <div>
+            <div className = "hiText">
               <h1>Hi, let's get in touch.</h1>
             </div>
             {
